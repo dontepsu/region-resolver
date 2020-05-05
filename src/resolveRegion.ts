@@ -1,5 +1,5 @@
-import { RegionObject, RegionWithDefault } from './types';
-import { BUILD_TIME_REGION } from './utils';
+import { RegionObject, RegionWithDefault, Region } from 'types';
+import { BUILD_TIME_REGION } from 'utils';
 
 export function resolveRegion<R extends RegionWithDefault, T> (
   regions: RegionObject<R, T>,
@@ -10,8 +10,8 @@ export function resolveRegion<R extends RegionWithDefault, T> (
 
   if (!obj) {
     return regions.default;
-  } else if (regions[obj]) {
-    return regions[obj];
+  } else if (regions[obj as any]) {
+    return regions[obj as any];
   }
   
   return obj;

@@ -49,6 +49,20 @@ describe('regionResolver', () => {
     expect(regionObject.b.mock.calls.length).toEqual(0);
   });
 
+  it ('should resolve correct lazy promise', async () => {    
+    const regionObject = {
+      a: jest.fn(async () => 'region a'),
+      b: jest.fn(async () => 'region b'),
+      c: jest.fn(async () => 'region c'),
+    };
+
+    const resolved = await lazyResolveRegion(regionObject, 'c');
+
+    expect(resolved).toEqual('region c');
+    expect(regionObject.a.mock.calls.length).toEqual(0);
+    expect(regionObject.b.mock.calls.length).toEqual(0);
+  });
+
   it ('should resolve correct region from param', () => {    
     const resolved = resolveRegion<TestRegion, string>({
       'a': 'region a',

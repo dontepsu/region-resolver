@@ -2,7 +2,9 @@ module.exports = {
   roots: ["./src"],
   setupFiles: ["./setupTests.ts"],
   moduleFileExtensions: ["ts", "tsx", "js"],
-  testPathIgnorePatterns: ["node_modules/"],
+  testPathIgnorePatterns: [
+    "node_modules/"
+  ],
   transform: {
     "^.+\\.tsx?$": "ts-jest"
   },
@@ -13,5 +15,9 @@ module.exports = {
       "identity-obj-proxy",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy"
   },
-  snapshotSerializers: ["enzyme-to-json/serializer"]
+  snapshotSerializers: ["enzyme-to-json/serializer"],
+  modulePaths: [
+    "node_modules",
+    "src"
+  ]
 };
